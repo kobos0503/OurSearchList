@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace는 Mapper interface의 패키지명과 인터페이스명과 동일하게 일치시킨다 -->
+<mapper namespace="com.kobos.oursearchlist.model.mapper.MemberMapper">
+	<!-- id는 Mapper interface의 추상메서드명과 일치시킨다 -->
+	<select id="getTotalMemberCount" resultType="int">
+		select count(*)
+		from member
+	</select>
+
+	<select id="findMemberById" resultType="memberVO">
+		SELECT id, password, nickname, email, enabled, certified
+		FROM member
+		WHERE id=#{value} AND enabled=1
+	</select>
+
+	<select id="selectAuthorityByUsername" resultType="authority">
+		SELECT id, authority
+		FROM authorities
+		WHERE id=#{value}
+	</select>
+
+	<insert id="registerMember" parameterType="memberVO">
+		insert
+		into member(id, password, email, nickname, certified)
+		values(#{id}, #{password}, #{email}, #{id}, #{certified})
+	</insert>
+	
+	<insert id="registerRole" parameterType="authority">
+		insert into authorities(id,authority) values(#{id},#{authority})
+	</insert>
+
+	<update id="updateMember" parameterType="memberVO">
+		update member
+		set	password=#{password},nickname=#{nickname} where id=#{id}
+	</update>
+
+	<select id="checkId" resultType="int" parameterType="string">
+		select count(*)
+		from member
+		where id=#{value}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

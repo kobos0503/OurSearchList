@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:fragment="scriptFragment">
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- 구글 api JS -->
+  <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>-->
+  <!-- 공통 JS-->
+  <script src="/myweb/js/scripts.js"></script>
+  <!-- 개별적인 css -->
+  <th:block layout:fragment="js"></th:block>
+</th:block>
+</html>
