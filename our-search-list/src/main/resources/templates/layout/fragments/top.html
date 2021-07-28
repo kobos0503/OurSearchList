@@ -3,19 +3,31 @@
 <th:block th:fragment="topbarFragment">
   <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
     <div class="container-fluid">
-      <button class="btn btn-primary" id="sidebarToggle">-</button>
+      <button class="btn btn-primary" id="sidebarToggle">
+        <span class="material-icons-outlined"> apps </span>
+      </button>
       <div class="ms-auto">
-
-        <button sec:authorize="isAnonymous()" class="btn btn-danger ms-auto" onclick="location.href='/user/signInForm'">로그인</button>
-        <button sec:authorize="isAnonymous()" class="btn btn-danger ms-auto" onclick="location.href='/user/signUpForm'">회원가입</button>
-        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-          <sec:csrfInput />
-          <button class="btn btn-danger ms-auto" onclick="location.href='/logout'">로그아웃</button>
-        </form>
-
+        <div sec:authorize="isAnonymous()">
+          <button class="btn btn-primary ms-auto" onclick="location.href='/user/signInForm'">
+            <span class="material-icons-outlined"> login </span>
+          </button>
+          <button class="btn btn-secondary ms-auto" onclick="location.href='/user/signUpForm'">
+            <span class="material-icons-outlined"> person_add </span>
+          </button>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+          <form th:action="@{/logout}" method="post">
+            <sec:csrfInput />
+            <button class="btn btn-danger ms-auto" onclick="location.href='/logout'">
+              <span class="material-icons-outlined"> logout </span>
+            </button>
+          </form>
+          <button type="button" class="btn btn-success ms-auto" onclick="location.href='/mypage'">
+            <span class="material-icons-outlined"> account_box </span>
+          </button>
+        </div>
       </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">

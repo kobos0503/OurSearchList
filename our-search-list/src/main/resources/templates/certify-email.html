@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<th:block layout:fragment="js">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</th:block>
 
 <sec:authorize access="isAuthenticated()">
   <sec:authentication property="principal" var="user" />
   <form id="email_form">
-    <input type="hidden" name="certified" value="${user.certified}">
-    <input type="hidden" name="username" value="${user.username}">
-    <input type="hidden" name="name" value="${user.name}">
+    <input type="hidden" name="certified" value="${user.certified}"> <input type="hidden" name="username" value="${user.username}"> <input type="hidden" name="name"
+      value="${user.name}">
   </form>
 </sec:authorize>
 <button id="email_send_buttton">이메일 인증하기</button>

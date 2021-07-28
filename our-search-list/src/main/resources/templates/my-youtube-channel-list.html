@@ -3,24 +3,133 @@
 <th:block layout:fragment="content">
   <main>
     <div class="album py-5 bg-light">
+      <div class="container position-relative">
+        <div class="row justify-content-center">
+          <div class="col-xl-6">
+            <div class="text-center">
+              <!-- Page heading-->
+              <br>
+              <form class="form-subscribe">
+                <!-- Email address input-->
+                <div class="row">
+                  <div class="col">
+                    <input class="form-control form-control-lg" id="emailAddress" type="text" placeholder="검색">
+                  </div>
+                  <div class="col-auto">
+                    <button class="btn btn-danger btn-lg disabled" id="submitButton" type="submit">검색</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="album py-5 bg-light">
+
+
       <div class="container">
+
+
+
+
+        <!-- 수정 버튼-->
+        <div class="card-body" style="display: flex; justify-content: center;">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">
+                <span class="material-icons-outlined"> create_new_folder </span>
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">
+                <span class="material-icons-outlined"> create </span>
+              </button>
+              <input type="text" placeholder="채널명 or 주소">
+              <button type="button" class="btn btn-sm btn-outline-secondary">
+                <span class="material-icons-outlined"> video_call </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <th:block th:each="num: ${#numbers.sequence(1,5)}">
             <div class="col">
               <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                  preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" />
-                <text x="35%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <rect width="100%" height="100%" fill="#55595c" />
+                <text x="40%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
                 <div class="card-body">
-                  <p class="card-text">This </p>
+                  <!-- 평상시 -->
+                  <!-- 전체 -->
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined"> holiday_village </span>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined"> saved_search </span>
+                      </button>
                     </div>
-                    <small class="text-muted">9 mins</small>
                   </div>
+                  <!-- 개별 -->
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined"> bungalow </span>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined"> search </span>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">aaaaaaaa</button>
+                    </div>
+                  </div>
+                  <!-- 수정시 -->
+                  <!-- 전체 -->
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined" style="transform: rotate(270deg);"> last_page </span>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined" style="transform: rotate(90deg);"> last_page </span>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined"> expand_less </span>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined"> expand_more </span>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined"> holiday_village </span> <span class="material-icons-outlined"> trending_flat </span> <span class="material-icons-outlined"> delete_forever </span>
+                      </button>
+
+                    </div>
+                  </div>
+                  <!-- 개별 -->
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined" style="transform: rotate(270deg);"> last_page </span>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined" style="transform: rotate(90deg);"> last_page </span>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined"> expand_less </span>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined"> expand_more </span>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="material-icons-outlined"> delete_forever </span>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">aaaaaaaa</button>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
