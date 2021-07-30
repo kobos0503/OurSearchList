@@ -23,3 +23,83 @@ window.addEventListener('DOMContentLoaded', event => {
 	}
 });
 
+
+function startEditMode() {
+	//수정모드 돌입
+	if (document.getElementById('saveList').style.display == 'none') {
+		document.getElementById('saveList').style.display = 'block';
+		document.getElementById('editList').style.display = 'none';
+		let normalList = document.getElementsByClassName('normal-mode');
+		for (let i = 0; i < normalList.length; i++) {
+			normalList[i].style.display = 'none';
+		}
+		let editList = document.getElementsByClassName('edit-mode');
+		for (let j = 0; j < editList.length; j++) {
+			editList[j].style.display = 'block';
+		}
+		//저장버튼 클릭
+	} else {
+		document.getElementById('saveList').style.display = 'none';
+		document.getElementById('editList').style.display = 'block';
+		let normalList = document.getElementsByClassName('normal-mode');
+		for (let i = 0; i < normalList.length; i++) {
+			normalList[i].style.display = 'block';
+		}
+		let editList = document.getElementsByClassName('edit-mode');
+		for (let j = 0; j < editList.length; j++) {
+			editList[j].style.display = 'none';
+		}
+	}
+}
+
+function up(list) {
+	//document.getElementById().parentElement
+	alert(list.parentElement);
+}
+function down() {
+
+}
+
+/*
+var $ul = $('ul')
+
+$('.up').click(function () {
+	var $li = $( this ).parent();
+
+	if ( $li.is(':first-child') )
+		$ul.append($li);
+	else 
+		$li.insertBefore($li.prev());
+});
+
+$('.down').click(function () {
+	var $li = $( this ).parent();
+
+	if ( $li.is(':last-child') )
+		$ul.prepend( $li );        
+	else
+		$li.insertAfter($li.next());
+});*/
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+$(document).ajaxSend(function(e, xhr, options) {
+	xhr.setRequestHeader(header, token);
+});
+
+function addYoutubeChannel() {
+	let youtubeURL = document.getElementById('youtubeURL').value;
+	let folderName = document.getElementById('folderName').value;
+	//console.log(youtubeURL);
+	//console.log(folderName);
+	$.ajax({
+		type: "post",
+		url: "/addYoutubeChannel",
+		data: {"youtubeURL" : youtubeURL, "folderName" : folderName},
+		success: function(result) {
+			alert(result);
+		}//success
+	});//ajax
+}
+
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace는 Mapper interface의 패키지명과 인터페이스명과 동일하게 일치시킨다 -->
+<mapper	namespace="com.kobos.oursearchlist.model.mapper.ListMapper">
+	<!-- id는 Mapper interface의 추상메서드명과 일치시킨다 -->
+	<insert id="createFolderToMyYoutubeChannelList" parameterType="map">
+		insert into folder_youtube_channel(id, folder_name) values(#{id},#{folderName})
+	</insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

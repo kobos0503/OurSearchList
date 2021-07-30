@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kobos.oursearchlist.model.service.MemberService;
 import com.kobos.oursearchlist.model.vo.MemberVO;
-
+//로그인, 로그아웃, 회원가입에 대한 컨트롤러
 @Controller
 public class MemberController {
 

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="~{layout/layout}"
-  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="~{layout/layout}" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <th:block layout:fragment="css">
   <link rel="stylesheet" href="/myweb/css/signup.css" />
 </th:block>
@@ -9,13 +8,13 @@
     <div class="container bg-light">
       <main>
         <div class="py-5 text-center">
-          <img class="d-block mx-auto mb-4" src="" alt="" width="72" height="57">
+          <img class="mb-4" src="/myweb/images/logo.png" alt="" width="150" height="150">
           <h2>회원 가입하기</h2>
           <p class="lead"></p>
         </div>
         <div class="row g-5">
           <div class="col-md-7 col-lg-8">
-            <form class="needs-validation" th:action="@{/user/signUp}" method="post" novalidate >
+            <form class="needs-validation" th:action="@{/user/signUp}" method="post" novalidate>
               <sec:csrfInput />
               <div class="row g-3">
                 <div class="col-12">
