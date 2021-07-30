@@ -25,7 +25,7 @@ class OurSearchListApplicationTests {
 		
 		//listService.createFolderToMyYoutubeChannelList("aa", "1");
 		
-		
+		//System.out.println(listService.getYoutubeChannelListById("1"));
 		
 	}
 

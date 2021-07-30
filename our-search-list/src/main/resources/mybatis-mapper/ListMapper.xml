@@ -9,7 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="createFolderToMyYoutubeChannelList" parameterType="map">
 		insert into folder_youtube_channel(id, folder_name) values(#{id},#{folderName})
 	</insert>
-
+	
+	<select id="getYoutubeChannelListById" parameterType="string" resultType="YoutubeChannelVO">
+		select * from youtube_channel_member where id = #{value}
+	</select>
 </mapper>
 
 
