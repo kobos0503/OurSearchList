@@ -4,15 +4,34 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace는 Mapper interface의 패키지명과 인터페이스명과 동일하게 일치시킨다 -->
-<mapper	namespace="com.kobos.oursearchlist.model.mapper.ListMapper">
+<mapper
+	namespace="com.kobos.oursearchlist.model.mapper.ListMapper">
 	<!-- id는 Mapper interface의 추상메서드명과 일치시킨다 -->
-	<insert id="createFolderToMyYoutubeChannelList" parameterType="map">
-		insert into folder_youtube_channel(id, folder_name) values(#{id},#{folderName})
+	<insert id="createFolderToMyYoutubeChannelList"	parameterType="map">
+		insert 
+		into folder_youtube_channel(id, folder_name)
+		values(#{id},#{folderName})
 	</insert>
-	
+
 	<select id="getYoutubeChannelListById" parameterType="string" resultType="YoutubeChannelVO">
-		select * from youtube_channel_member where id = #{value}
+		select *
+		from list_youtube_channel 
+		where id = #{value}
 	</select>
+
+	<select id="getFolderListById" parameterType="string" resultType="string">
+		select *
+		from folder_youtube_channel
+		where id = #{value}
+	</select>
+
+	<insert id="addYoutubeChannel" parameterType="map">
+		insert 
+		into list_youtube_channel(channel_info, folder_name, id)
+		values(#{youtubeChannelInfo},#{folderName},#{id})
+	</insert>
+
+
 </mapper>
 
 

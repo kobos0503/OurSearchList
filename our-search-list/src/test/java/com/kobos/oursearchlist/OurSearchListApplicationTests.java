@@ -27,6 +27,7 @@ class OurSearchListApplicationTests {
 		
 		//System.out.println(listService.getYoutubeChannelListById("1"));
 		
+		listService.addYoutubeChannel("1", "aa", "bb");
 	}
 
 }

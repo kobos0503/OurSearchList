@@ -11,7 +11,7 @@ import com.kobos.oursearchlist.model.mapper.ListMapper;
 import com.kobos.oursearchlist.model.vo.YoutubeChannelVO;
 
 @Service
-public class ListServiceImpl implements ListService{
+public class ListServiceImpl implements ListService {
 	@Autowired
 	ListMapper listMapper;
 
@@ -28,4 +28,20 @@ public class ListServiceImpl implements ListService{
 		List<YoutubeChannelVO> list = listMapper.getYoutubeChannelListById(id);
 		return list;
 	}
+
+	@Override
+	public void addYoutubeChannel(String id, String folderName, String youtubeChannelInfo) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("folderName", folderName);
+		map.put("youtubeChannelInfo", youtubeChannelInfo);
+		listMapper.addYoutubeChannel(map);
+	}
+	
+	@Override
+	public List<String> getFolderListById(String id) {
+		List<String> list = listMapper.getFolderListById(id);
+		return list;
+	}
+	
 }

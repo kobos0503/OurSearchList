@@ -10,4 +10,8 @@ public interface ListService {
 
 	List<YoutubeChannelVO> getYoutubeChannelListById(String id);
 
+	void addYoutubeChannel(String id, String folderName, String youtubeChannelInfo);
+
+	List<String> getFolderListById(String id);
+
 }

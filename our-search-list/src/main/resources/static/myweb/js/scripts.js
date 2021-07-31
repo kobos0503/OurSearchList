@@ -101,5 +101,10 @@ function addYoutubeChannel() {
 	});//ajax
 }
 
+function createFolderToMyYoutubeChannelList(){
+	document.getElementById("createFolderForm").submit();
+}
 
-
+function addYoutubeChannel(){
+	document.getElementById("addYoutubeChannel").submit();
+}

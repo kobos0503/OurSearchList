@@ -28,7 +28,12 @@ public class MyYoutubeChannelListController {
 	@RequestMapping("/user/myYoutubeChannelList")
 	public String myYoutubeChannelList(Model model) {
 		System.out.println("MyYoutubeChannelListController : myYoutubeChannelList");
-
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = memberVO.getId();
+		List<String> folderList = listService.getFolderListById(id);
+		List<YoutubeChannelVO> channelList = listService.getYoutubeChannelListById(id);
+		model.addAttribute("folderList", folderList);
+		model.addAttribute("channelList", channelList);
 		return "my-youtube-channel-list";
 	}
 
@@ -59,11 +64,13 @@ public class MyYoutubeChannelListController {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = memberVO.getId();
 		// 유저 테이블에 채널 정보 넣기
-		
-		
-		
-		List<YoutubeChannelVO> list = listService.getYoutubeChannelListById(id);
-		model.addAttribute("list", list);
+		listService.addYoutubeChannel(id, folderName, youtubeChannelInfo);
+
+		List<String> folderList = listService.getFolderListById(id);
+		List<YoutubeChannelVO> channelList = listService.getYoutubeChannelListById(id);
+		model.addAttribute("folderList", folderList);
+		model.addAttribute("channelList", channelList);
+
 		return "my-youtube-channel-list";
 	}
 

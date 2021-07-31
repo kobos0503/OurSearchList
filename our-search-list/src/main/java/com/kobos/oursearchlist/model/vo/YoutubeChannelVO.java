@@ -1,30 +1,30 @@
 package com.kobos.oursearchlist.model.vo;
 
 public class YoutubeChannelVO {
-
+	String channelInfo;
 	String folderName;
-	String channelId;
-	String channelTitle;
-	String thumbnailsDefaultURL;
-	String thumbnailsMediumURL;
-	String thumbnailsHightURL;
-	String region_code;
+	String id;
+	String description;
 
 	public YoutubeChannelVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public YoutubeChannelVO(String folderName, String channelId, String channelTitle, String thumbnailsDefaultURL,
-			String thumbnailsMediumURL, String thumbnailsHightURL, String region_code) {
+	public YoutubeChannelVO(String channelInfo, String folderName, String id, String description) {
 		super();
+		this.channelInfo = channelInfo;
 		this.folderName = folderName;
-		this.channelId = channelId;
-		this.channelTitle = channelTitle;
-		this.thumbnailsDefaultURL = thumbnailsDefaultURL;
-		this.thumbnailsMediumURL = thumbnailsMediumURL;
-		this.thumbnailsHightURL = thumbnailsHightURL;
-		this.region_code = region_code;
+		this.id = id;
+		this.description = description;
+	}
+
+	public String getChannelInfo() {
+		return channelInfo;
+	}
+
+	public void setChannelInfo(String channelInfo) {
+		this.channelInfo = channelInfo;
 	}
 
 	public String getFolderName() {
@@ -35,60 +35,26 @@ public class YoutubeChannelVO {
 		this.folderName = folderName;
 	}
 
-	public String getChannelId() {
-		return channelId;
+	public String getId() {
+		return id;
 	}
 
-	public void setChannelId(String channelId) {
-		this.channelId = channelId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getChannelTitle() {
-		return channelTitle;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setChannelTitle(String channelTitle) {
-		this.channelTitle = channelTitle;
-	}
-
-	public String getThumbnailsDefaultURL() {
-		return thumbnailsDefaultURL;
-	}
-
-	public void setThumbnailsDefaultURL(String thumbnailsDefaultURL) {
-		this.thumbnailsDefaultURL = thumbnailsDefaultURL;
-	}
-
-	public String getThumbnailsMediumURL() {
-		return thumbnailsMediumURL;
-	}
-
-	public void setThumbnailsMediumURL(String thumbnailsMediumURL) {
-		this.thumbnailsMediumURL = thumbnailsMediumURL;
-	}
-
-	public String getThumbnailsHightURL() {
-		return thumbnailsHightURL;
-	}
-
-	public void setThumbnailsHightURL(String thumbnailsHightURL) {
-		this.thumbnailsHightURL = thumbnailsHightURL;
-	}
-
-	public String getRegion_code() {
-		return region_code;
-	}
-
-	public void setRegion_code(String region_code) {
-		this.region_code = region_code;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
 	public String toString() {
-		return "YoutubeChannelVO [folderName=" + folderName + ", channelId=" + channelId + ", channelTitle="
-				+ channelTitle + ", thumbnailsDefaultURL=" + thumbnailsDefaultURL + ", thumbnailsMediumURL="
-				+ thumbnailsMediumURL + ", thumbnailsHightURL=" + thumbnailsHightURL + ", region_code=" + region_code
-				+ "]";
+		return "YoutubeChannelVO [channelInfo=" + channelInfo + ", folderName=" + folderName + ", id=" + id
+				+ ", description=" + description + "]";
 	}
 
 }

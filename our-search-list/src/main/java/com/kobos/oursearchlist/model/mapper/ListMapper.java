@@ -14,4 +14,9 @@ public interface ListMapper {
 
 	List<YoutubeChannelVO> getYoutubeChannelListById(String id);
 
+	void addYoutubeChannel(Map<String, String> map);
+
+	List<String> getFolderListById(String id);
+
+
 }
