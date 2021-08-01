@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kobos.oursearchlist.model.service.ListService;
 import com.kobos.oursearchlist.model.service.YoutubeAPIService;
 import com.kobos.oursearchlist.model.vo.MemberVO;
@@ -44,15 +45,13 @@ public class MyYoutubeChannelListController {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = memberVO.getId();
 		listService.createFolderToMyYoutubeChannelList(folderName, id);
-		List<YoutubeChannelVO> list = listService.getYoutubeChannelListById(id);
-		model.addAttribute("list", list);
-		return "my-youtube-channel-list";
+
+		return "redirect:user/myYoutubeChannelList";
 	}
 
 	@PostMapping("/addYoutubeChannel")
 	public String addYoutubeChannel(String youtubeURL, String folderName, Model model) {
 		System.out.println("YoutubeController : /addYoutubeChannel");
-		// System.out.println(youtubeURL);
 		// youtube api 로 채널 정보 가져오기
 		String youtubeChannelInfo = null;
 		try {
@@ -66,12 +65,7 @@ public class MyYoutubeChannelListController {
 		// 유저 테이블에 채널 정보 넣기
 		listService.addYoutubeChannel(id, folderName, youtubeChannelInfo);
 
-		List<String> folderList = listService.getFolderListById(id);
-		List<YoutubeChannelVO> channelList = listService.getYoutubeChannelListById(id);
-		model.addAttribute("folderList", folderList);
-		model.addAttribute("channelList", channelList);
-
-		return "my-youtube-channel-list";
+		return "redirect:user/myYoutubeChannelList";
 	}
 
 	// 유튜브 채널 등록, ajax, 미사용

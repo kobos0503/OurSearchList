@@ -19,6 +19,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id = #{value}
 	</select>
 
+	<select id="getYoutubeChannelListByIdWithMap" parameterType="string" resultType="map">
+		select *
+		from list_youtube_channel 
+		where id = #{value}
+	</select>
+
 	<select id="getFolderListById" parameterType="string" resultType="string">
 		select *
 		from folder_youtube_channel

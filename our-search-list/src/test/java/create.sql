@@ -34,12 +34,13 @@ create table list_youtube_channel(
 	folder_name varchar(100) not null,
 	id varchar(100) not null,
 	description varchar(200),
-	
 	constraint fk_info_youtube_channel foreign key(folder_name, id) references folder_youtube_channel(folder_name, id)
 	on delete cascade
 	on update cascade
 );
-constraint pk_info_youtube_channel primary key(channel_info, folder_name, id),
+constraint pk_info_youtube_channel primary key(number, folder_name, id),
+
+
 drop table authorities;
 drop table member;
 drop table list_youtube_channel;

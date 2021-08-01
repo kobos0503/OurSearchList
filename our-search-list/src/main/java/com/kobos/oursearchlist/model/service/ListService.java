@@ -1,5 +1,6 @@
 package com.kobos.oursearchlist.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.kobos.oursearchlist.model.vo.YoutubeChannelVO;
@@ -13,5 +14,7 @@ public interface ListService {
 	void addYoutubeChannel(String id, String folderName, String youtubeChannelInfo);
 
 	List<String> getFolderListById(String id);
+
+	List<HashMap<String, String>> getYoutubeChannelListByIdWithMap(String id);
 
 }

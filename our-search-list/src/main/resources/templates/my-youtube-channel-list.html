@@ -3,12 +3,20 @@
 <th:block layout:fragment="css">
   <link rel="stylesheet" href="/myweb/css/my-youtube-channel-list.css" />
 </th:block>
+<th:block layout:fragment="js">
+  <script src="/myweb/js/my-youtube-channel-list.js"></script>
+</th:block>
 <th:block layout:fragment="content">
 
-  <hr>
+  <!--   <hr>
   <span th:text="${folderList}"></span>
+  <input type="hidden" id="folderList" th:value="${folderList}">
   <hr>
   <span th:text="${channelList}"></span>
+  <input type="hidden" id="channelList" th:value="${channelList}">
+  <hr> -->
+
+
 
   <main>
     <div class="album py-5 bg-light">
@@ -51,13 +59,13 @@
           </div>
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <th:block th:each="num: ${#numbers.sequence(1,5)}">
+          <th:block th:each="folderName : ${folderList}">
             <div class="col">
               <div class="card shadow-sm">
                 <div style="display: flex; justify-content: center;">
                   <div style="background-color: #f7394f; width: 100%; text-align: center;">
                     <div class="normal-mode">
-                      <span style="color: white">음악</span>
+                      <span th:text="${folderName}" style="color: white"></span>
                     </div>
                     <div class="edit-mode" style="display: none">
                       <input type="text" placeholder="음악">
@@ -70,7 +78,7 @@
                 <text x="40%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> */-->
                 <div class="card-body">
                   <div class="normal-mode">
-                    <input type="text" style="width: 100%">
+                    <input th:id="'query'+${folderName}" type="text" style="width: 100%">
                     <!-- 평상시 -->
                     <!-- 전체 -->
                     <div class="d-flex justify-content-between align-items-center">
@@ -84,6 +92,102 @@
                       </div>
                     </div>
                     <!-- 개별 -->
+
+
+                    <div th:each="channel : ${channelList}" class="d-flex justify-content-between align-items-center">
+                      <div th:if="${channel.folderName==folderName}">
+                        <div class="btn-group">
+                          <button type="button" th:onclick="'window.open(\'https://www.youtube.com/channel/'+ @{${channel.channelId}} + '\')'" class="btn btn-sm btn-outline-secondary" style="padding: 0">
+                            <img class="thumbnail" th:src="${channel.thumbnails}">
+                          </button>
+                          <button type="button" th:value="${channel.channelId}" th:onclick="searchWithChannel(this)" class="btn btn-sm btn-outline-secondary">
+                            <span class="material-icons-outlined"> search </span>
+                          </button>
+                          <button th:text="${channel.channelTitle}" type="button" class="btn btn-sm btn-outline-secondary"></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 수정시 -->
+                  <!-- 전체 -->
+                  <div class="edit-mode" style="display: none">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                          <span class="material-icons-outlined" style="transform: rotate(270deg);"> last_page </span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                          <span class="material-icons-outlined"> expand_less </span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                          <span class="material-icons-outlined"> expand_more </span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                          <span class="material-icons-outlined" style="transform: rotate(90deg);"> last_page </span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                          <span class="material-icons-outlined"> holiday_village </span> <span class="material-icons-outlined"> trending_flat </span> <span class="material-icons-outlined"> delete_forever </span>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- 개별 -->
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                          <span class="material-icons-outlined" style="transform: rotate(270deg);"> last_page </span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="up(this)">
+                          <span class="material-icons-outlined"> expand_less </span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="down(this)">
+                          <span class="material-icons-outlined"> expand_more </span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                          <span class="material-icons-outlined" style="transform: rotate(90deg);"> last_page </span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                          <span class="material-icons-outlined"> delete_forever </span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">by the way1</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!--                 <div class="card-body">
+                  <div class="normal-mode">
+                    <input type="text" style="width: 100%">
+                    평상시
+                    전체
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                          <span class="material-icons-outlined"> holiday_village </span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                          <span class="material-icons-outlined"> saved_search </span>
+                        </button>
+                      </div>
+                    </div>
+                    개별
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-secondary">
@@ -119,8 +223,8 @@
                       </div>
                     </div>
                   </div>
-                  <!-- 수정시 -->
-                  <!-- 전체 -->
+                  수정시
+                  전체
                   <div class="edit-mode" style="display: none">
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
@@ -141,7 +245,7 @@
                         </button>
                       </div>
                     </div>
-                    <!-- 개별 -->
+                    개별
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-secondary">
@@ -203,7 +307,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </th:block>

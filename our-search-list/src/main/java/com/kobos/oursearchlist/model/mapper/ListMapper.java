@@ -1,5 +1,6 @@
 package com.kobos.oursearchlist.model.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,8 @@ public interface ListMapper {
 	void addYoutubeChannel(Map<String, String> map);
 
 	List<String> getFolderListById(String id);
+
+	List<HashMap<String, String>> getYoutubeChannelListByIdWithMap(String id);
 
 
 }
