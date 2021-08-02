@@ -51,6 +51,5 @@ select * from authorities;
 select * from folder_youtube_channel;
 select * from list_youtube_channel;
 
-insert into folder_youtube_channel(id, folder_name) values('1','aa')
-delete from folder_youtube_channel where folder_name ='aa'
-select * from youtube_channel_member where id = '1'
+delete from folder_youtube_channel;
+delete from list_youtube_channel;

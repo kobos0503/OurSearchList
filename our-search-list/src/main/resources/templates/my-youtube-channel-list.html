@@ -25,9 +25,9 @@
         <div class="card-body" style="display: flex; justify-content: center; padding: 0rem">
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary" id="editList" onclick="startEditMode()" style="display: block">
+              <!-- <button type="button" class="btn btn-sm btn-outline-secondary" id="editList" onclick="startEditMode()" style="display: block">
                 <span class="material-icons-outlined"> build </span>
-              </button>
+              </button> -->
               <button type="button" class="btn btn-sm btn-outline-secondary" id="saveList" onclick="startEditMode()" style="display: none">
                 <span class="material-icons-outlined"> save_alt </span>
               </button>
@@ -86,14 +86,12 @@
                         <button type="button" class="btn btn-sm btn-outline-secondary">
                           <span class="material-icons-outlined"> holiday_village </span>
                         </button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <button type="button" th:value="${folderName}" th:onclick="serchWithAllChannels(this)" class="btn btn-sm btn-outline-secondary">
                           <span class="material-icons-outlined"> saved_search </span>
                         </button>
                       </div>
                     </div>
                     <!-- 개별 -->
-
-
                     <div th:each="channel : ${channelList}" class="d-flex justify-content-between align-items-center">
                       <div th:if="${channel.folderName==folderName}">
                         <div class="btn-group">
@@ -103,6 +101,9 @@
                           <button type="button" th:value="${channel.channelId}" th:onclick="searchWithChannel(this)" class="btn btn-sm btn-outline-secondary">
                             <span class="material-icons-outlined"> search </span>
                           </button>
+                          <input type="hidden" th:name="${channel.folderName}+folderName" th:value="${channel.folderName}">
+                          <input type="hidden" th:name="${channel.folderName}+channelTitle" th:value="${channel.channelTitle}">
+                          <input type="hidden" th:name="${channel.folderName}+channelId" th:value="${channel.channelId}">
                           <button th:text="${channel.channelTitle}" type="button" class="btn btn-sm btn-outline-secondary"></button>
                         </div>
                       </div>
