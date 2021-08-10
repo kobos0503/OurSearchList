@@ -38,15 +38,18 @@ function serchWithAllChannels(data) {
 	for (let i = 0; i < channelTitleList.length; i++) {
 		//console.log(channelTitleList[i].value);
 		if (i != channelTitleList.length - 1) {
-			channel += "\"" + channelTitleList[i].value.trim() + "\"" + "|";
+			//channel += "\"" + channelTitleList[i].value.replace(/(\s*)/g, "") + "\"" + "|";
+			channel += "\"" + channelTitleList[i].value + "\"" + "|";
 		} else if (i == channelTitleList.length - 1) {
-			channel += "\"" + channelTitleList[i].value.trim() + "\"";
+			//channel += "\"" + channelTitleList[i].value.replace(/(\s*)/g, "") + "\"";
+			channel += "\"" + channelTitleList[i].value + "\"";
 		}
 	}
 	//console.log(channel);
 	let folderName = data.value;
 	let query = document.getElementById('query' + folderName).value;
-	let url = 'https://www.youtube.com/results?search_query=' + '(' + channel + ')' + '%26' +"\""+ query+"\"";
+	let url = 'https://www.youtube.com/results?search_query=' + '(' + channel + ')' + '%26' + query;
+	//let url = 'https://www.youtube.com/results?search_query=' + '(' + channel + ')'+ query;
 	//console.log(url);
 	window.open(url);
 }

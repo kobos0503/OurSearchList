@@ -51,5 +51,5 @@ select * from authorities;
 select * from folder_youtube_channel;
 select * from list_youtube_channel;
 
-delete from folder_youtube_channel;
-delete from list_youtube_channel;
+delete from folder_youtube_channel where folder_name ='4k';
+delete from list_youtube_channel where folder_name =''

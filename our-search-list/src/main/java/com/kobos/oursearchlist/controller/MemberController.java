@@ -17,7 +17,13 @@ public class MemberController {
 
 	@Autowired
 	MemberService memberService;
-
+	
+	@RequestMapping("/accessDeniedView")
+	public String accessDeniedView() {
+		System.out.println("accessDeniedView");
+		return "sign-in-form";
+	}
+	
 	// 로그인 폼
 	@RequestMapping("/user/signInForm")
 	public String loginForm() {

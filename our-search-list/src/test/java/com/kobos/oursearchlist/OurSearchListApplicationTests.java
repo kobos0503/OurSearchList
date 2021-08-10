@@ -1,5 +1,6 @@
 package com.kobos.oursearchlist;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -61,10 +62,20 @@ class OurSearchListApplicationTests {
 			e.printStackTrace();
 		}*/
 		
-		System.out.println(listService.getYoutubeChannelListById("1"));
-		System.out.println();
+		//System.out.println(listService.getYoutubeChannelListById("1"));
+		//System.out.println();
 		
 		//listService.addYoutubeChannel("1", "aa", "bb");
+		
+		/*try {
+			String response = youtubeAPIService.searchYoutubeChannelInfo("https://www.youtube.com/watch?v=jVG5jvOzu9Y");
+			System.out.println(response);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		
 	}
 
 }
