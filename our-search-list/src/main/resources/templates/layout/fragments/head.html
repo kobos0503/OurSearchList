@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<!-- Head -->
+<!--/* Head */-->
 <th:block th:fragment="headFragment">
   <head>
     <meta charset="utf-8" />
@@ -10,15 +10,15 @@
     <meta name="_csrf" th:content="${_csrf.token}">
     <meta name="_csrf_header" th:content="${_csrf.headerName}">
     <title>Our Search List</title>
-    <!-- 공통 css-->
-    <!-- Favicon-->
+    <!--/* 공통 css*/-->
+    <!--/* Favicon*/-->
     <link rel="icon" type="image/x-icon" href="myweb/assets/favicon.ico" />
-    <!-- BootStrap css -->
+    <!--/* BootStrap css */-->
     <link href="/myweb/css/styles.css" rel="stylesheet" />
-    <!-- Google Font -->
+    <!--/* Google Font */-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-    <!-- 개별적인 css -->
+    <!--/* 개별적인 css */-->
     <th:block layout:fragment="css"></th:block>
   </head>
 </th:block>

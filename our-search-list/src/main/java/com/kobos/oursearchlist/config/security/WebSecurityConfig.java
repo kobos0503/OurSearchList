@@ -12,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //스프링 시큐리티 설정 클래스 
 @Configuration
 @EnableWebSecurity
-//@Secured @PreAuthorize, @PostAuthorize 애노테이션을 사용하여 인증,인가 처리를 하고 싶을때 사용하는 옵션
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -62,30 +61,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.exceptionHandling()
 				.accessDeniedPage("/accessDeniedView")
 				.authenticationEntryPoint(new AjaxAuthenticationEntryPoint("/user/signInForm"));
-		/*	
-		 	인증 처리 : 로그인 여부에 따라 접근 가능한 서비스를 설정 
-		 	/  , /home  : welcome file 		
-			
-			정적인 파일 ( css , javascript , image ) 은 static 디렉토리 이하에 위치시킨다 
-			/myweb/** 이하 하위 디렉토리(css, images, js) 및 파일에 접근 허용  
-			
-			/user/ 로그인 없어도 서비스할 url 
-			위의 지정한 url 에는 permitAll() 로그인 인증없이 서비스 되고 
-			그 외의 요청에는 anyRequest().authenticated()  로그인 인증된 사용자만 접근할 수 있다 
-		 */
-		/*http.authorizeRequests().antMatchers("/", "/home", "/myweb/**", "/user/**") .permitAll().anyRequest().authenticated();*/
-		
-		// 인증(authentication): 로그인을 위한 설정
-		/*http.formLogin().loginPage("/home") // 로그인 폼이 있는 url
-				.loginProcessingUrl("/login")// login form 의 action 경로 
-				.failureUrl("/login_fail") // 로그인 실패시 메세지 보여줄 url
-				.defaultSuccessUrl("/home") // 로그인 성공 후 이동할 url
-				.usernameParameter("id").passwordParameter("password").and() //로그인 폼에서 전달할 폼 입력양식의 name 
-				.formLogin().permitAll();*/
-		// 로그아웃을 위한 설정
-		/*http.logout().permitAll().logoutUrl("/logout")
-				.logoutSuccessUrl("/home").invalidateHttpSession(true).
-				and().exceptionHandling().accessDeniedPage("/accessDeniedView").authenticationEntryPoint(new AjaxAuthenticationEntryPoint("/home"));*/
 	}
 
 	@Override

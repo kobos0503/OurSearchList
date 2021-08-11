@@ -53,3 +53,20 @@ function serchWithAllChannels(data) {
 	//console.log(url);
 	window.open(url);
 }
+
+function deleteChannelFolder(data){
+	//console.log(data.value);
+	//document.getElementById("deleteChannelFolder").submit();
+	if(confirm(data.value  +" 폴더를 삭제하시겠습니까?")){
+		data.nextElementSibling.submit();
+	}
+	
+}
+
+function deleteChannel(data){
+	//console.log(data);
+	//document.getElementById("deleteChannel").submit();
+	data.nextElementSibling.nextElementSibling.submit();
+
+
+}

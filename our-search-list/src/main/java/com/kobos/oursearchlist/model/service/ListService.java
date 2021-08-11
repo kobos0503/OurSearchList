@@ -17,4 +17,8 @@ public interface ListService {
 
 	List<HashMap<String, String>> getYoutubeChannelListByIdWithMap(String id);
 
+	void deleteChannelFolder(YoutubeChannelVO youtubeChannelVO);
+
+	void deleteChannel(YoutubeChannelVO youtubeChannelVO);
+
 }

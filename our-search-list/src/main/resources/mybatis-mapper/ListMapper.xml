@@ -33,10 +33,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addYoutubeChannel" parameterType="map">
 		insert 
-		into list_youtube_channel(channel_info, folder_name, id)
-		values(#{youtubeChannelInfo},#{folderName},#{id})
+		into list_youtube_channel(channel_info, folder_name, id, channel_id)
+		values(#{youtubeChannelInfo},#{folderName},#{id},#{channelId})
 	</insert>
 
+	<delete id="deleteChannelFolder" parameterType="youtubeChannelVO">
+		delete
+		from folder_youtube_channel
+		where id=#{id} and folder_name=#{folderName}
+	</delete>
+	
+	<delete id="deleteChannel" parameterType="youtubeChannelVO">
+		delete
+		from list_youtube_channel
+		where id=#{id} and folder_name=#{folderName} and channel_id=#{channelId}
+	</delete>
 
 </mapper>
 

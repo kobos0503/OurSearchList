@@ -18,6 +18,7 @@ public class ListServiceImpl implements ListService {
 
 	@Override
 	public void createFolderToMyYoutubeChannelList(String folderName, String id) {
+		System.out.println("ListServiceImpl : createFolderToMyYoutubeChannelList");
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("folderName", folderName);
 		map.put("id", id);
@@ -26,6 +27,7 @@ public class ListServiceImpl implements ListService {
 
 	@Override
 	public List<YoutubeChannelVO> getYoutubeChannelListById(String id) {
+		System.out.println("ListServiceImpl : getYoutubeChannelListById");
 		List<YoutubeChannelVO> list = listMapper.getYoutubeChannelListById(id);
 		for(int i=0;i<list.size();i++) {
 			String channelInfo = list.get(i).getChannelInfo();
@@ -49,6 +51,7 @@ public class ListServiceImpl implements ListService {
 	
 	@Override
 	public List<HashMap<String, String>> getYoutubeChannelListByIdWithMap(String id){
+		System.out.println("ListServiceImpl : getYoutubeChannelListByIdWithMap");
 		List<HashMap<String, String>> list = listMapper.getYoutubeChannelListByIdWithMap(id);
 		return list;
 	}
@@ -56,17 +59,34 @@ public class ListServiceImpl implements ListService {
 
 	@Override
 	public void addYoutubeChannel(String id, String folderName, String youtubeChannelInfo) {
+		System.out.println("ListServiceImpl : addYoutubeChannel");
+		JSONObject obj = new JSONObject(youtubeChannelInfo);
+		String channelId =(String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("snippet").get("channelId");
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("folderName", folderName);
 		map.put("youtubeChannelInfo", youtubeChannelInfo);
+		map.put("channelId", channelId);
 		listMapper.addYoutubeChannel(map);
 	}
 	
 	@Override
 	public List<String> getFolderListById(String id) {
+		System.out.println("ListServiceImpl : getFolderListById");
 		List<String> list = listMapper.getFolderListById(id);
 		return list;
+	}
+
+	@Override
+	public void deleteChannelFolder(YoutubeChannelVO youtubeChannelVO) {
+		System.out.println("ListServiceImpl : deleteChannelFolder");
+		listMapper.deleteChannelFolder(youtubeChannelVO);
+	}
+
+	@Override
+	public void deleteChannel(YoutubeChannelVO youtubeChannelVO) {
+		System.out.println("ListServiceImpl : deleteChannel");
+		listMapper.deleteChannel(youtubeChannelVO);
 	}
 	
 }

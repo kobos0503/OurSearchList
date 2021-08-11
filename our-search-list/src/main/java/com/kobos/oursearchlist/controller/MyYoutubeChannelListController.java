@@ -1,6 +1,5 @@
 package com.kobos.oursearchlist.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kobos.oursearchlist.model.service.ListService;
 import com.kobos.oursearchlist.model.service.YoutubeAPIService;
 import com.kobos.oursearchlist.model.vo.MemberVO;
@@ -29,23 +27,27 @@ public class MyYoutubeChannelListController {
 	@RequestMapping("/user/myYoutubeChannelList")
 	public String myYoutubeChannelList(Model model) {
 		System.out.println("MyYoutubeChannelListController : myYoutubeChannelList");
-		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String id = memberVO.getId();
-		List<String> folderList = listService.getFolderListById(id);
-		List<YoutubeChannelVO> channelList = listService.getYoutubeChannelListById(id);
-		model.addAttribute("folderList", folderList);
-		model.addAttribute("channelList", channelList);
-		return "my-youtube-channel-list";
+		if (SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+			return "my-youtube-channel-list";
+		} else {
+			MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String id = memberVO.getId();
+			List<String> folderList = listService.getFolderListById(id);
+			List<YoutubeChannelVO> channelList = listService.getYoutubeChannelListById(id);
+			model.addAttribute("folderList", folderList);
+			model.addAttribute("channelList", channelList);
+			return "my-youtube-channel-list";
+		}
 	}
 
 	// 폴더 추가
 	@PostMapping("/createFolderToMyYoutubeChannelList")
 	public String createFolderToMyYoutubeChannelList(String folderName, Model model) {
 		System.out.println("MyYoutubeChannelListController : createFolderToMyYoutubeChannelList");
+		// 로그인한 유저 정보 가져오기
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = memberVO.getId();
 		listService.createFolderToMyYoutubeChannelList(folderName, id);
-
 		return "redirect:user/myYoutubeChannelList";
 	}
 
@@ -56,15 +58,39 @@ public class MyYoutubeChannelListController {
 		String youtubeChannelInfo = null;
 		try {
 			youtubeChannelInfo = youtubeAPIService.searchYoutubeChannelInfo(youtubeURL);
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			return "add-youtube-channel-fail";
 		}
 		// 로그인한 유저 정보 가져오기
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = memberVO.getId();
 		// 유저 테이블에 채널 정보 넣기
 		listService.addYoutubeChannel(id, folderName, youtubeChannelInfo);
+		return "redirect:user/myYoutubeChannelList";
 
+	}
+
+	@PostMapping("/deleteChannelFolder")
+	public String deleteChannelFolder(YoutubeChannelVO youtubeChannelVO) {
+		System.out.println("YoutubeController : /deleteChannelFolder");
+		// 로그인한 유저 정보 가져오기
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = memberVO.getId();
+		youtubeChannelVO.setId(id);
+		// System.out.println(youtubeChannelVO);
+		listService.deleteChannelFolder(youtubeChannelVO);
+		return "redirect:user/myYoutubeChannelList";
+	}
+
+	@PostMapping("/deleteChannel")
+	public String deleteChannel(YoutubeChannelVO youtubeChannelVO) {
+		System.out.println("YoutubeController : /deleteChannel");
+		// 로그인한 유저 정보 가져오기
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = memberVO.getId();
+		youtubeChannelVO.setId(id);
+		// System.out.println(youtubeChannelVO);
+		listService.deleteChannel(youtubeChannelVO);
 		return "redirect:user/myYoutubeChannelList";
 	}
 

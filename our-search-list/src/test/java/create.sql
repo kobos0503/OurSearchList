@@ -30,15 +30,15 @@ create table folder_youtube_channel(
 
 --my youtube channel list 채널 정보 테이블
 create table list_youtube_channel(
-	channel_info text not null,
+	channel_id varchar(100) not null,
 	folder_name varchar(100) not null,
 	id varchar(100) not null,
-	description varchar(200),
+	channel_info text not null,
+	constraint pk_info_youtube_channel primary key(channel_id, folder_name, id),
 	constraint fk_info_youtube_channel foreign key(folder_name, id) references folder_youtube_channel(folder_name, id)
 	on delete cascade
 	on update cascade
 );
-constraint pk_info_youtube_channel primary key(number, folder_name, id),
 
 
 drop table authorities;
