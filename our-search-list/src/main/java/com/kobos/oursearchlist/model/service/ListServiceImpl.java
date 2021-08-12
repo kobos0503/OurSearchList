@@ -44,7 +44,6 @@ public class ListServiceImpl implements ListService {
 			list.get(i).setThumbnails(thumbnails);
 			/*list.get(i).setTitle(title);
 			list.get(i).setVideoId(videoId);*/
-			
 		}
 		return list;
 	}
@@ -58,16 +57,21 @@ public class ListServiceImpl implements ListService {
 	
 
 	@Override
-	public void addYoutubeChannel(String id, String folderName, String youtubeChannelInfo) {
+	public void addYoutubeChannel(String id, String folderName, String youtubeChannelInfo) throws Exception {
 		System.out.println("ListServiceImpl : addYoutubeChannel");
 		JSONObject obj = new JSONObject(youtubeChannelInfo);
-		String channelId =(String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("snippet").get("channelId");
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("id", id);
-		map.put("folderName", folderName);
-		map.put("youtubeChannelInfo", youtubeChannelInfo);
-		map.put("channelId", channelId);
-		listMapper.addYoutubeChannel(map);
+		try {
+			String channelId =(String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("snippet").get("channelId");
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("id", id);
+			map.put("folderName", folderName);
+			map.put("youtubeChannelInfo", youtubeChannelInfo);
+			map.put("channelId", channelId);
+			listMapper.addYoutubeChannel(map);
+		} catch (Exception e) {
+			throw new Exception();
+		}
+
 	}
 	
 	@Override

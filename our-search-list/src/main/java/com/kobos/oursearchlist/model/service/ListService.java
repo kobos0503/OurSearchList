@@ -11,7 +11,7 @@ public interface ListService {
 
 	List<YoutubeChannelVO> getYoutubeChannelListById(String id);
 
-	void addYoutubeChannel(String id, String folderName, String youtubeChannelInfo);
+	void addYoutubeChannel(String id, String folderName, String youtubeChannelInfo) throws Exception;
 
 	List<String> getFolderListById(String id);
 

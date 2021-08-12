@@ -58,16 +58,15 @@ public class MyYoutubeChannelListController {
 		String youtubeChannelInfo = null;
 		try {
 			youtubeChannelInfo = youtubeAPIService.searchYoutubeChannelInfo(youtubeURL);
+			// 로그인한 유저 정보 가져오기
+			MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String id = memberVO.getId();
+			// 유저 테이블에 채널 정보 넣기
+			listService.addYoutubeChannel(id, folderName, youtubeChannelInfo);
+			return "redirect:user/myYoutubeChannelList";
 		} catch (Exception e) {
 			return "add-youtube-channel-fail";
 		}
-		// 로그인한 유저 정보 가져오기
-		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String id = memberVO.getId();
-		// 유저 테이블에 채널 정보 넣기
-		listService.addYoutubeChannel(id, folderName, youtubeChannelInfo);
-		return "redirect:user/myYoutubeChannelList";
-
 	}
 
 	@PostMapping("/deleteChannelFolder")

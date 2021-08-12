@@ -16,8 +16,9 @@ create table member (
 create table authorities(
 	id varchar(100) not null,
 	authority varchar(30) not null,
-	constraint fk_authorities foreign key(id) references member(id),
-	constraint member_authorities primary key(id,authority)
+	constraint member_authorities primary key(id,authority),
+	constraint fk_authorities foreign key(id) references member(id)
+	on delete cascade
 );
 
 --my youtube channel list 용 폴더 테이블
@@ -51,5 +52,6 @@ select * from authorities;
 select * from folder_youtube_channel;
 select * from list_youtube_channel;
 
+delete from member where id='2'
 delete from folder_youtube_channel where folder_name ='4k';
 delete from list_youtube_channel where folder_name =''
