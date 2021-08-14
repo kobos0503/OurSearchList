@@ -1,11 +1,5 @@
 package com.kobos.oursearchlist;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.kobos.oursearchlist.model.service.ListService;
 import com.kobos.oursearchlist.model.service.MemberService;
 import com.kobos.oursearchlist.model.service.YoutubeAPIService;
-import com.nimbusds.jose.shaded.json.JSONArray;
 
 @SpringBootTest
 class OurSearchListApplicationTests {

@@ -31,7 +31,7 @@
               </button> */-->
               <form id="createFolderForm" method="post" th:action="@{/createFolderToMyYoutubeChannelList}">
                 <sec:csrfInput />
-                <input type="text" name="folderName" placeholder="새폴더 이름">
+                <input id="newFolderName" type="text" name="folderName" placeholder="새폴더 이름">
               </form>
               <button type="button" class="btn btn-sm btn-outline-secondary" onclick="createFolderToMyYoutubeChannelList()">
                 <span class="material-icons-outlined"> create_new_folder </span>
@@ -66,7 +66,7 @@
                 <div style="display: flex; justify-content: center;">
                   <div style="background-color: #f7394f; width: 100%; text-align: center;">
                     <div class="normal-mode">
-                      <span th:text="${folderName}" style="color: white"></span>
+                      <span name="folderNameList" th:text="${folderName}" style="color: white"></span>
                     </div>
                     <div class="edit-mode" style="display: none">
                       <input type="text" placeholder="음악">
@@ -93,7 +93,7 @@
                         <button type="button" th:value="${folderName}" onclick="deleteChannelFolder(this)" class="btn btn-sm btn-outline-secondary">
                           <span class="material-icons-outlined"> delete_forever </span>
                         </button>
-                        <form id="deleteChannelFolder" method="post" th:action="@{/deleteChannelFolder}">
+                        <form method="post" th:action="@{/deleteChannelFolder}">
                           <sec:csrfInput />
                           <input type="hidden" th:name="folderName" th:value="${folderName}">
                         </form>
@@ -117,7 +117,7 @@
                             <span class="material-icons-outlined"> delete </span>
                           </button>
                           <button th:text="${channel.channelTitle}" th:onclick="'window.open(\'https://www.youtube.com/channel/'+ @{${channel.channelId}} + '\')'" type="button" class="btn btn-sm btn-outline-secondary" style="max-height: 41px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"></button>
-                          <form id="deleteChannel" method="post" th:action="@{/deleteChannel}">
+                          <form method="post" th:action="@{/deleteChannel}">
                             <sec:csrfInput />
                             <input type="hidden" th:name="folderName" th:value="${channel.folderName}">
                             <input type="hidden" th:name="channelTitle" th:value="${channel.channelTitle}">

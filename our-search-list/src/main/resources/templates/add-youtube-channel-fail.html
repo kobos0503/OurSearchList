@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+  <input type="hidden" id="errorMessage" th:value="${errorMessage}">
   <script type="text/javascript">
-			alert("입력하신 채널 정보가 정확하지 않습니다");
+			alert(document.getElementById("errorMessage").value);
 			location.href = "/user/myYoutubeChannelList";
 		</script>
 

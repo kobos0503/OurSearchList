@@ -29,15 +29,18 @@ public class ListServiceImpl implements ListService {
 	public List<YoutubeChannelVO> getYoutubeChannelListById(String id) {
 		System.out.println("ListServiceImpl : getYoutubeChannelListById");
 		List<YoutubeChannelVO> list = listMapper.getYoutubeChannelListById(id);
-		for(int i=0;i<list.size();i++) {
+		for (int i = 0; i < list.size(); i++) {
 			String channelInfo = list.get(i).getChannelInfo();
 			JSONObject obj = new JSONObject(channelInfo);
 			String regionCode = (String) obj.get("regionCode");
 			/*String title =(String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("snippet").get("title");
 			String videoId = (String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("id").get("videoId");*/
-			String thumbnails =(String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("snippet").getJSONObject("thumbnails").getJSONObject("default").get("url");
-			String channelId =(String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("snippet").get("channelId");
-			String channelTitle =(String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("snippet").get("channelTitle");
+			String thumbnails = (String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("snippet")
+					.getJSONObject("thumbnails").getJSONObject("default").get("url");
+			String channelId = (String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("snippet")
+					.get("channelId");
+			String channelTitle = (String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("snippet")
+					.get("channelTitle");
 			list.get(i).setChannelId(channelId);
 			list.get(i).setChannelTitle(channelTitle);
 			list.get(i).setRegionCode(regionCode);
@@ -47,33 +50,36 @@ public class ListServiceImpl implements ListService {
 		}
 		return list;
 	}
-	
+
 	@Override
-	public List<HashMap<String, String>> getYoutubeChannelListByIdWithMap(String id){
+	public List<HashMap<String, String>> getYoutubeChannelListByIdWithMap(String id) {
 		System.out.println("ListServiceImpl : getYoutubeChannelListByIdWithMap");
 		List<HashMap<String, String>> list = listMapper.getYoutubeChannelListByIdWithMap(id);
 		return list;
 	}
-	
 
 	@Override
 	public void addYoutubeChannel(String id, String folderName, String youtubeChannelInfo) throws Exception {
 		System.out.println("ListServiceImpl : addYoutubeChannel");
 		JSONObject obj = new JSONObject(youtubeChannelInfo);
+		String channelId = null;
 		try {
-			String channelId =(String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("snippet").get("channelId");
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("id", id);
-			map.put("folderName", folderName);
-			map.put("youtubeChannelInfo", youtubeChannelInfo);
-			map.put("channelId", channelId);
+			channelId = (String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("snippet").get("channelId");
+		} catch (Exception e) {
+			throw new Exception("존재하지 않는 채널입니다. 조금 더 정확한 채널명을 입력해주세요.");
+		}
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("folderName", folderName);
+		map.put("youtubeChannelInfo", youtubeChannelInfo);
+		map.put("channelId", channelId);
+		try {
 			listMapper.addYoutubeChannel(map);
 		} catch (Exception e) {
-			throw new Exception();
+			throw new Exception("중복되는 채널입니다. 폴더에 동일한 채널이 있어요.");
 		}
-
 	}
-	
+
 	@Override
 	public List<String> getFolderListById(String id) {
 		System.out.println("ListServiceImpl : getFolderListById");
@@ -92,5 +98,5 @@ public class ListServiceImpl implements ListService {
 		System.out.println("ListServiceImpl : deleteChannel");
 		listMapper.deleteChannel(youtubeChannelVO);
 	}
-	
+
 }

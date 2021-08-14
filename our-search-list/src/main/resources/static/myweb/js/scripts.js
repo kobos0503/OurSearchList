@@ -86,25 +86,3 @@ $(document).ajaxSend(function(e, xhr, options) {
 	xhr.setRequestHeader(header, token);
 });
 
-function addYoutubeChannel() {
-	let youtubeURL = document.getElementById('youtubeURL').value;
-	let folderName = document.getElementById('folderName').value;
-	//console.log(youtubeURL);
-	//console.log(folderName);
-	$.ajax({
-		type: "post",
-		url: "/addYoutubeChannel",
-		data: {"youtubeURL" : youtubeURL, "folderName" : folderName},
-		success: function(result) {
-			alert(result);
-		}//success
-	});//ajax
-}
-
-function createFolderToMyYoutubeChannelList(){
-	document.getElementById("createFolderForm").submit();
-}
-
-function addYoutubeChannel(){
-	document.getElementById("addYoutubeChannel").submit();
-}

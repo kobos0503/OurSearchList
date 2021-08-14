@@ -1,43 +1,31 @@
 package com.kobos.oursearchlist.model.vo;
 
 public class YoutubeChannelVO {
-	String folderName;
 	String id;
-	String description;
+	String folderName;
 	String channelInfo;
-	String regionCode;
-	String title;
-	String videoId;
-	String thumbnails;
 	String channelId;
 	String channelTitle;
+	String thumbnails;
+	String regionCode;
+	String description;
 
 	public YoutubeChannelVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public YoutubeChannelVO(String folderName, String id, String description, String channelInfo, String regionCode,
-			String title, String videoId, String thumbnails, String channelId, String channelTitle) {
+	public YoutubeChannelVO(String id, String folderName, String channelInfo, String channelId, String channelTitle,
+			String thumbnails, String regionCode, String description) {
 		super();
-		this.folderName = folderName;
 		this.id = id;
-		this.description = description;
+		this.folderName = folderName;
 		this.channelInfo = channelInfo;
-		this.regionCode = regionCode;
-		this.title = title;
-		this.videoId = videoId;
-		this.thumbnails = thumbnails;
 		this.channelId = channelId;
 		this.channelTitle = channelTitle;
-	}
-
-	public String getFolderName() {
-		return folderName;
-	}
-
-	public void setFolderName(String folderName) {
-		this.folderName = folderName;
+		this.thumbnails = thumbnails;
+		this.regionCode = regionCode;
+		this.description = description;
 	}
 
 	public String getId() {
@@ -48,12 +36,12 @@ public class YoutubeChannelVO {
 		this.id = id;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getFolderName() {
+		return folderName;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setFolderName(String folderName) {
+		this.folderName = folderName;
 	}
 
 	public String getChannelInfo() {
@@ -62,38 +50,6 @@ public class YoutubeChannelVO {
 
 	public void setChannelInfo(String channelInfo) {
 		this.channelInfo = channelInfo;
-	}
-
-	public String getRegionCode() {
-		return regionCode;
-	}
-
-	public void setRegionCode(String regionCode) {
-		this.regionCode = regionCode;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getVideoId() {
-		return videoId;
-	}
-
-	public void setVideoId(String videoId) {
-		this.videoId = videoId;
-	}
-
-	public String getThumbnails() {
-		return thumbnails;
-	}
-
-	public void setThumbnails(String thumbnails) {
-		this.thumbnails = thumbnails;
 	}
 
 	public String getChannelId() {
@@ -112,12 +68,35 @@ public class YoutubeChannelVO {
 		this.channelTitle = channelTitle;
 	}
 
+	public String getThumbnails() {
+		return thumbnails;
+	}
+
+	public void setThumbnails(String thumbnails) {
+		this.thumbnails = thumbnails;
+	}
+
+	public String getRegionCode() {
+		return regionCode;
+	}
+
+	public void setRegionCode(String regionCode) {
+		this.regionCode = regionCode;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public String toString() {
-		return "YoutubeChannelVO [folderName=" + folderName + ", id=" + id + ", description=" + description
-				+ ", channelInfo=" + channelInfo + ", regionCode=" + regionCode + ", title=" + title + ", videoId="
-				+ videoId + ", thumbnails=" + thumbnails + ", channelId=" + channelId + ", channelTitle=" + channelTitle
-				+ "]";
+		return "YoutubeChannelVO [id=" + id + ", folderName=" + folderName + ", channelInfo=" + channelInfo
+				+ ", channelId=" + channelId + ", channelTitle=" + channelTitle + ", thumbnails=" + thumbnails
+				+ ", regionCode=" + regionCode + ", description=" + description + "]";
 	}
 
 }

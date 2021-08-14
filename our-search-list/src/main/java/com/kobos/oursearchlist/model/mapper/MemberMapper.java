@@ -19,8 +19,8 @@ public interface MemberMapper {
 
 	void updateMember(MemberVO memberVO);
 
-	int idcheck(String id);
+	int checkId(String id);
 
-	List<Authority> selectAuthorityByUsername(String username);
+	List<Authority> selectAuthorityById(String username);
 
 }

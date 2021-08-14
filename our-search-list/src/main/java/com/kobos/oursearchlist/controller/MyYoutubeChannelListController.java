@@ -50,7 +50,8 @@ public class MyYoutubeChannelListController {
 		listService.createFolderToMyYoutubeChannelList(folderName, id);
 		return "redirect:user/myYoutubeChannelList";
 	}
-
+	
+	// 채널 추가
 	@PostMapping("/addYoutubeChannel")
 	public String addYoutubeChannel(String youtubeURL, String folderName, Model model) {
 		System.out.println("YoutubeController : /addYoutubeChannel");
@@ -65,10 +66,13 @@ public class MyYoutubeChannelListController {
 			listService.addYoutubeChannel(id, folderName, youtubeChannelInfo);
 			return "redirect:user/myYoutubeChannelList";
 		} catch (Exception e) {
+			model.addAttribute("errorMessage", e.getMessage());
+			//System.out.println(e.getMessage());
 			return "add-youtube-channel-fail";
 		}
 	}
-
+	
+	// 폴더 삭제
 	@PostMapping("/deleteChannelFolder")
 	public String deleteChannelFolder(YoutubeChannelVO youtubeChannelVO) {
 		System.out.println("YoutubeController : /deleteChannelFolder");
@@ -81,6 +85,7 @@ public class MyYoutubeChannelListController {
 		return "redirect:user/myYoutubeChannelList";
 	}
 
+	// 채널 삭제
 	@PostMapping("/deleteChannel")
 	public String deleteChannel(YoutubeChannelVO youtubeChannelVO) {
 		System.out.println("YoutubeController : /deleteChannel");

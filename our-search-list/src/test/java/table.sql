@@ -6,7 +6,7 @@ commit;
 create table member (
 	id varchar(100) primary key,
 	password varchar(100) not null,
-	email varchar(100) not null,
+	email varchar(100),
 	nickname varchar(100) not null,
 	certified varchar(100) not null,
 	enabled int default 1 not null
@@ -35,23 +35,20 @@ create table list_youtube_channel(
 	folder_name varchar(100) not null,
 	id varchar(100) not null,
 	channel_info text not null,
+	description varchar(255),
 	constraint pk_info_youtube_channel primary key(channel_id, folder_name, id),
 	constraint fk_info_youtube_channel foreign key(folder_name, id) references folder_youtube_channel(folder_name, id)
 	on delete cascade
 	on update cascade
 );
 
-
 drop table authorities;
-drop table member;
 drop table list_youtube_channel;
 drop table folder_youtube_channel;
+drop table member;
 
 select * from member;
 select * from authorities;
 select * from folder_youtube_channel;
 select * from list_youtube_channel;
 
-delete from member where id='2'
-delete from folder_youtube_channel where folder_name ='4k';
-delete from list_youtube_channel where folder_name =''

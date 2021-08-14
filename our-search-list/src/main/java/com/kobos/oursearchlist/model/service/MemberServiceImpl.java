@@ -48,8 +48,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public List<Authority> selectAuthorityByUsername(String username) {
-		return memberMapper.selectAuthorityByUsername(username);
+	public List<Authority> selectAuthorityByUsername(String id) {
+		return memberMapper.selectAuthorityById(id);
 	}
 	
 	@Override
@@ -59,10 +59,13 @@ public class MemberServiceImpl implements MemberService {
 		memberVO.setPassword(encodePassword);
 		memberMapper.updateMember(memberVO);
 	}
-
+	
+	/**
+	 * id 체크. 동일한 아이디가 없다면 ok, 동일한 아이디가 이미 있다면 fail
+	 */
 	@Override
 	public String idcheck(String id) {
-		int count = memberMapper.idcheck(id);
+		int count = memberMapper.checkId(id);
 		return (count == 0) ? "ok" : "fail";
 	}
 
