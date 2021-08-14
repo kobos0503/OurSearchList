@@ -28,9 +28,11 @@ window.onload = function() {
 		//console.log(inputPassword.value);
 		//console.log(inputPassword2.value);
 		let passwordConfirm = document.getElementById("passwordConfirm");
-		if (inputPassword.value == inputPassword2.value) {
+		if (inputPassword.value == "" & inputPassword2.value == "") {
+			passwordConfirm.innerHTML = ""
+		} else if (inputPassword.value == inputPassword2.value) {
 			passwordConfirm.innerHTML = "<p style='color:blue'>비밀번호가 일치합니다.</p>";
-		} else {
+		} else if (inputPassword.value != inputPassword2.value & inputPassword.value != "" & inputPassword2.value != "") {
 			passwordConfirm.innerHTML = "<p style='color:red'>비밀번호가 불일치합니다.</>";
 		}
 	})
@@ -39,36 +41,42 @@ window.onload = function() {
 		//console.log(inputPassword.value);
 		//console.log(inputPassword2.value);
 		let passwordConfirm = document.getElementById("passwordConfirm");
-		if (inputPassword.value == inputPassword2.value) {
+		if (inputPassword.value == "" & inputPassword2.value == "") {
+			passwordConfirm.innerHTML = ""
+		} else if (inputPassword.value == inputPassword2.value) {
 			passwordConfirm.innerHTML = "<p style='color:blue'>비밀번호가 일치합니다.</p>";
-		} else {
+		} else if (inputPassword.value != inputPassword2.value & inputPassword.value != "" & inputPassword2.value != "") {
 			passwordConfirm.innerHTML = "<p style='color:red'>비밀번호가 불일치합니다.</>";
 		}
 	})
 
-	const inputEmail = document.getElementById("inputEmail");
+	/*const inputEmail = document.getElementById("inputEmail");
 	inputEmail.addEventListener('keyup', () => {
 		//console.log(inputEmail.value);
 
-	})
+	})*/
 }
 
 function signUp() {
-	if (document.getElementById("inputId").value=="") {
+	if (document.getElementById("inputId").value == "") {
 		alert("아이디를 입력해주세요");
 		return false;
 	};
 
 	if (document.getElementById("idConfirm").innerText == "중복되는 아이디 입니다.") {
-		alert("중복된 아이디 입니다. 새로운 아이디를 입력해주세요");
+		alert("중복된 아이디 입니다. 다른 아이디를 입력해주세요");
 		return false;
 	};
 
-	if (document.getElementById("passwordConfirm").innerText!="비밀번호가 일치합니다.") {
-		alert("비밀번호를 다시 확인해주세요");
+	if(document.getElementById("inputPassword").value=="" | document.getElementById("inputPassword2").value==""){
+		alert("비밀번호를 입력해주세요");
 		return false;
 	}
 
+	if (document.getElementById("passwordConfirm").innerText != "비밀번호가 일치합니다.") {
+		alert("비밀번호를 다시 확인해주세요");
+		return false;
+	}
 
 	let signUpSubmit = document.getElementById("signUpSubmit");
 	signUpSubmit.submit();
