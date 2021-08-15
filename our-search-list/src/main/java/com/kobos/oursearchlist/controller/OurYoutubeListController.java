@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class OurYoutubeListController {
 	@RequestMapping("/user/ourYoutubeList")
 	public String ourYoutubeList() {
-		System.out.println("ourYoutubeList");
+		System.out.println("OurYoutubeListController : ourYoutubeList");
 		return "our-youtube-list";
 	}
 }

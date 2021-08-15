@@ -67,7 +67,7 @@ public class ListServiceImpl implements ListService {
 			channelId = (String) obj.getJSONArray("items").getJSONObject(0).getJSONObject("snippet").get("channelId");
 		} catch (Exception e) {
 			throw new Exception("존재하지 않는 채널입니다. 조금 더 정확한 채널명을 입력해주세요.");
-		}
+		}	
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("folderName", folderName);

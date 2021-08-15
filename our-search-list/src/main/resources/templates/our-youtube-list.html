@@ -1,7 +1,104 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="~{layout/layout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="~{layout/layout}" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<th:block layout:fragment="css">
+  <link rel="stylesheet" href="/myweb/css/our-youtube-list.css" />
+</th:block>
+<th:block layout:fragment="js">
+  <script src="/myweb/js/our-youtube-list.js"></script>
+</th:block>
 <th:block layout:fragment="content">
-  
-  
+
+  <br>
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <!--/* <li>
+          <a href="#" class="nav-link px-2 text-secondary">Home</a>
+        </li>
+        <li>
+          <a href="#" class="nav-link px-2 text-white">Features</a>
+        </li>
+        <li>
+          <a href="#" class="nav-link px-2 text-white">Pricing</a>
+        </li>
+        <li>
+          <a href="#" class="nav-link px-2 text-white">FAQs</a>
+        </li>
+        <li>
+          <a href="#" class="nav-link px-2 text-white">About</a>
+        </li> */-->
+      </ul>
+      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+      </form>
+      <div class="text-end">
+        <button type="button" class="btn btn-outline-light me-2">검색</button>
+        <button type="button" class="btn btn-warning">글쓰기</button>
+      </div>
+    </div>
+    <br>
+
+    <div class="bd-example">
+      <table class="table">
+        <thead>
+          <tr style="text-align: center">
+            <th style="width: 5%">글번호</th>
+            <th style="width: 8%">가져가기</th>
+            <th style="width: 50%">제목</th>
+            <th style="width: 10%">글쓴이</th>
+            <th style="width: 5%">조회수</th>
+            <th style="width: 5%">추천수</th>
+            <th style="width: 5%">작성일</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="text-align: center">
+            <th scope="row">1</th>
+            <td><span class="material-icons-outlined"> download </span></td>
+            <td style="text-align: left;">가나다라마바사</td>
+            <td>asdf</td>
+            <td>0</td>
+            <td>0</td>
+            <td>210815</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+
+    <div style="text-align: center">
+      <div class="bd-example" style="display: inline-block;">
+        <nav aria-label="Standard pagination example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">3</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">»</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
 </th:block>
 </html>

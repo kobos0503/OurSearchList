@@ -42,13 +42,43 @@ create table list_youtube_channel(
 	on update cascade
 );
 
+--post 테이블
+create table post(
+	num int primary key,
+	title varchar(255) not null,
+	content blob not null,
+	posting_date date not null,
+	recommend_type varchar(100) not null,
+	hits int default 0 not null,
+	likes int default 0 not null,
+	certified int default 0 not null,
+	id varchar(100) not null,
+	constraint fk_post foreign key(id) references member(id)
+);
+
+--post용 channel 테이블
+create table post_youtube_channel(
+	channel_id varchar(100) not null,
+	num int not null,
+	channel_info text not null,
+	folder_name varchar(100) not null,
+	description varchar(255),
+	constraint pk_post_youtube_channel primary key(channel_id, num),
+	constraint fk_post_youtube_channel foreign key(num) references post(num)
+	on delete cascade
+)
+
+
 drop table authorities;
 drop table list_youtube_channel;
 drop table folder_youtube_channel;
+drop table post_youtube_channel;
+drop table post;
 drop table member;
 
 select * from member;
 select * from authorities;
 select * from folder_youtube_channel;
 select * from list_youtube_channel;
-
+select * from post_youtube_channel;
+select * from post;
