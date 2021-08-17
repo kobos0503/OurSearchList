@@ -44,10 +44,12 @@ create table list_youtube_channel(
 
 --post 테이블
 create table post(
-	num int primary key,
+	num int AUTO_INCREMENT primary key,
 	title varchar(255) not null,
 	content blob not null,
-	posting_date date not null,
+	channel_info text not null,
+	folder_name varchar(255) not null,
+	posting_date timestamp not null default now(),
 	recommend_type varchar(100) not null,
 	hits int default 0 not null,
 	likes int default 0 not null,
@@ -57,7 +59,7 @@ create table post(
 );
 
 --post용 channel 테이블
-create table post_youtube_channel(
+/*create table post_youtube_channel(
 	channel_id varchar(100) not null,
 	num int not null,
 	channel_info text not null,
@@ -66,13 +68,13 @@ create table post_youtube_channel(
 	constraint pk_post_youtube_channel primary key(channel_id, num),
 	constraint fk_post_youtube_channel foreign key(num) references post(num)
 	on delete cascade
-)
+)*/
 
 
 drop table authorities;
 drop table list_youtube_channel;
 drop table folder_youtube_channel;
-drop table post_youtube_channel;
+--drop table post_youtube_channel;
 drop table post;
 drop table member;
 
@@ -80,5 +82,5 @@ select * from member;
 select * from authorities;
 select * from folder_youtube_channel;
 select * from list_youtube_channel;
-select * from post_youtube_channel;
+--select * from post_youtube_channel;
 select * from post;

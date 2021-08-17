@@ -8,6 +8,8 @@
 </th:block>
 <th:block layout:fragment="content">
 
+  <!-- <th:block th:text="${list}"></th:block> -->
+
   <br>
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -32,8 +34,8 @@
         <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
       </form>
       <div class="text-end">
-        <button type="button" class="btn btn-outline-light me-2">검색</button>
-        <button type="button" class="btn btn-warning">글쓰기</button>
+        <button type="button" class="btn btn-secondary me-2">검색</button>
+        <button type="button" onclick="location.href='/ourYoutubePostWriteForm'" class="btn btn-warning">글쓰기</button>
       </div>
     </div>
     <br>
@@ -44,31 +46,37 @@
           <tr style="text-align: center">
             <th style="width: 5%">글번호</th>
             <th style="width: 8%">가져가기</th>
-            <th style="width: 50%">제목</th>
+            <th style="width: 40%">제목</th>
             <th style="width: 10%">글쓴이</th>
             <th style="width: 5%">조회수</th>
             <th style="width: 5%">추천수</th>
-            <th style="width: 5%">작성일</th>
+            <th style="width: 30%">작성일</th>
           </tr>
         </thead>
-        <tbody>
-          <tr style="text-align: center">
-            <th scope="row">1</th>
-            <td><span class="material-icons-outlined"> download </span></td>
-            <td style="text-align: left;">가나다라마바사</td>
-            <td>asdf</td>
-            <td>0</td>
-            <td>0</td>
-            <td>210815</td>
-          </tr>
-
+        <tbody style="vertical-align: middle;">
+          <th:block th:each="postVO : ${list}">
+            <tr style="text-align: center">
+              <th scope="row" th:text="${postVO.num}"></th>
+              <td>
+                <form method="post" th:action="@{/addOurYoutubeChannelListToMyYoutubeChannel}">
+                  <button type="button" onclick="addOurYoutubeChannelListToMyYoutubeChannel(this)">
+                    <span class="material-icons-outlined"> download </span>
+                  </button>
+                  <input type="hidden" name="num" th:value="${postVO.num}">
+                  <input type="hidden" name="folderName" th:value="${postVO.folderName}">
+                  <sec:csrfInput />
+                </form>
+              </td>
+              <td style="text-align: left;"><a href="" th:href="@{/user/getPostDetail(num=${postVO.num})}" th:text="${postVO.title}" style="text-decoration: none; color: black"></a></td>
+              <td th:text="${postVO.nickname}">닉네임</td>
+              <td th:text="${postVO.hits}">조회수</td>
+              <td th:text="${postVO.likes}">좋아요수</td>
+              <td th:text="${postVO.postingDate}">날짜</td>
+            </tr>
+          </th:block>
         </tbody>
       </table>
     </div>
-
-
-
-
 
 
     <div style="text-align: center">

@@ -4,24 +4,23 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace는 Mapper interface의 패키지명과 인터페이스명과 동일하게 일치시킨다 -->
-<mapper
-	namespace="com.kobos.oursearchlist.model.mapper.ListMapper">
+<mapper namespace="com.kobos.oursearchlist.model.mapper.ListMapper">
 	<!-- id는 Mapper interface의 추상메서드명과 일치시킨다 -->
-	<insert id="createFolderToMyYoutubeChannelList"	parameterType="map">
-		insert 
+	<insert id="createFolderToMyYoutubeChannelList" parameterType="map">
+		insert
 		into folder_youtube_channel(id, folder_name)
 		values(#{id},#{folderName})
 	</insert>
 
 	<select id="getYoutubeChannelListById" parameterType="string" resultType="YoutubeChannelVO">
 		select *
-		from list_youtube_channel 
+		from list_youtube_channel
 		where id = #{value}
 	</select>
 
 	<select id="getYoutubeChannelListByIdWithMap" parameterType="string" resultType="map">
 		select *
-		from list_youtube_channel 
+		from list_youtube_channel
 		where id = #{value}
 	</select>
 
@@ -32,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="addYoutubeChannel" parameterType="map">
-		insert 
+		insert
 		into list_youtube_channel(channel_info, folder_name, id, channel_id)
 		values(#{youtubeChannelInfo},#{folderName},#{id},#{channelId})
 	</insert>
@@ -40,15 +39,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteChannelFolder" parameterType="youtubeChannelVO">
 		delete
 		from folder_youtube_channel
-		where id=#{id} and folder_name=#{folderName}
-	</delete>
-	
-	<delete id="deleteChannel" parameterType="youtubeChannelVO">
-		delete
-		from list_youtube_channel
-		where id=#{id} and folder_name=#{folderName} and channel_id=#{channelId}
+		where id=#{id} and
+		folder_name=#{folderName}
 	</delete>
 
+	<delete id="deleteChannel" parameterType="youtubeChannelVO">
+		delete
+		from
+		list_youtube_channel
+		where id=#{id} and folder_name=#{folderName} and
+		channel_id=#{channelId}
+	</delete>
+
+	<select id="getYoutubeChannelListByIdAndFolderName" parameterType="map" resultType="string">
+		select channel_info
+		from
+		list_youtube_channel
+		where id = #{id}
+		and folder_name = #{folderName}
+	</select>
+
+	<insert id="registerPostToOurSearchList" parameterType="postVO">
+		insert
+		into post(title, content, channel_info, folder_name, recommend_type,
+		id)
+		values(#{title}, #{content}, #{channelInfo}, #{folderName},
+		#{recommendType}, #{id})
+	</insert>
+
+	<select id="getTotalPostCount" resultType="int">
+		select count(*)
+		from
+		post
+	</select>
+
+	<select id="getOurYoutubeList" parameterType="map" resultType="postVO">
+		select p.num, p.title, p.content, p.channel_info, p.folder_name,
+		p.posting_date,
+		p.recommend_type, p.hits, p.likes, p.certified, p.id,
+		m.nickname
+		from (
+		select row_number() over(order by num desc) as rnum, num, title, content,
+		channel_info, folder_name,
+		posting_date, recommend_type, hits, likes, certified, id
+		from post
+		) p, member m
+		where p.id = m.id and rnum between
+		#{startRowNumber} and #{endRowNumber}
+	</select>
+	
+	<select id="getOurYoutubeListbyPostNum" parameterType="string" resultType="string">
+		select channel_info
+		from post
+		where num=#{value}
+	</select>
+	
 </mapper>
 
 

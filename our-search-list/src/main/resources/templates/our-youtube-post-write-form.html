@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="~{layout/layout}" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<th:block layout:fragment="css">
+  <link rel="stylesheet" href="/myweb/css/our-youtube-list.css" />
+</th:block>
+<th:block layout:fragment="js">
+  <script src="/myweb/js/our-youtube-list.js"></script>
+</th:block>
+<th:block layout:fragment="content">
+  <div class="container">
+    <br>
+    <th:block th:each="folder : ${folderList}">
+      <button type="button" onclick="getYoutubeChannelListByIdAndFolderName(this)" class="btn btn-outline-success" th:value="${folder}" th:text="${folder}"></button>
+    </th:block>
+    <br>
+    <div class="btn-group" id="myChannelListByFolderName"></div>
+
+    <form id="postSubmit" method="post" th:action="@{/registerPostToOurSearchList}">
+      <sec:csrfInput />
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">&nbsp제 &nbsp목&nbsp</span>
+        <input type="text" class="form-control" id="title" name="title">
+      </div>
+      <div class="input-group">
+        <span class="input-group-text">글 내용</span>
+        <textarea class="form-control" id="content" name="content" style="margin-top: 0px; margin-bottom: 0px; height: 405px;"></textarea>
+      </div>
+      <input id="selectedFolderName" name="folderName" type="hidden" value="">
+    </form>
+
+    <br>
+    <div class="col-12">
+      <button onclick="postSubmit()" class="btn btn-primary" type="submit">글 작성하기</button>
+      <button onclick="location.href='/user/ourYoutubeList'" class="btn btn-primary" type="submit">취소</button>
+    </div>
+  </div>
