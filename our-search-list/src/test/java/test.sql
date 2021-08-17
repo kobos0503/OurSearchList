@@ -9,6 +9,7 @@ from (
 		from post
 	 ) p, member m
 where p.id = m.id and rnum between '1' and '10'
+order by p.num desc
 
 select * from member
 select * from post

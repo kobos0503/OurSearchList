@@ -86,6 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		) p, member m
 		where p.id = m.id and rnum between
 		#{startRowNumber} and #{endRowNumber}
+		order by p.num desc
 	</select>
 	
 	<select id="getOurYoutubeListbyPostNum" parameterType="string" resultType="string">
